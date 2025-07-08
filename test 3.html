@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <title>Document</title>
-    </head>
-    <body class="min-h-screen flex items-center justify-center p-4 font-sans">
 
-        <div class="p-6 w-xl">
-            <div class="flex items-center mb-4 space-x-2">
-                <label for="jumlahBaris">Fibonacci</label>
-                <input
-                    type="number"
-                    id="jumlahBaris"
-                    min="1"
-                    class="border border-gray-400 px-2 py-1 text-sm w-24 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
-                <button
-                    onclick="menampilkanFibonacci()"
-                    class="bg-gray-200 border border-gray-400 px-3 py-1 rounded-sm text-sm hover:bg-gray-200">Run</button>
-            </div>
-            <div class="mt-4">
-                <label class="block mb-1 text-sm font-medium text-gray-700">Hasil:</label>
-                <pre id="hasil"
-                    class="text-sm font-mono whitespace-pre leading-6 text-gray-800 bg-gray-50 p-4 rounded border border-gray-300 min-h-[100px]"></pre>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Test No 3</title>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4 font-sans">
+
+    <div class="p-6 w-xl">
+        <div class="flex items-center mb-4 space-x-2">
+            <label for="jumlahBaris">Fibonacci</label>
+            <input type="number" id="jumlahBaris" min="1"
+                class="border border-gray-400 px-2 py-1 text-sm w-24 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+            <button onclick="menampilkanFibonacci()"
+                class="bg-gray-200 border border-gray-400 px-3 py-1 rounded-sm text-sm hover:bg-gray-200">Run</button>
         </div>
+        <div class="mt-4">
+            <label class="block mb-1 text-sm font-medium text-gray-700">Hasil:</label>
+            <pre id="hasil"
+                class="text-sm font-mono whitespace-pre leading-6 text-gray-800 bg-gray-50 p-4 rounded border border-gray-300 min-h-[100px]"></pre>
+        </div>
+    </div>
 
-        <script>
-            function menampilkanFibonacci() {
-                const baris = parseInt(document.getElementById("jumlahBaris").value);
-                const outputDiv = document.getElementById("hasil");
+    <script>
+        function menampilkanFibonacci() {
+            const baris = parseInt(document.getElementById("jumlahBaris").value);
+            const outputDiv = document.getElementById("hasil");
 
-                let hasil = "";
-                let fib = [1, 1];
+            let hasil = "";
+            let fib = [1, 1];
 
-                const totalAngka = (baris * (baris + 1)) / 2;
+            const totalAngka = (baris * (baris + 1)) / 2;
 
-                while (fib.length < totalAngka) {
-                    const next = fib[fib.length - 1] + fib[fib.length - 2];
-                    fib.push(next);
-                }
-
-                let index = 0;
-                const maxBarisPanjang = baris;
-                for (let i = 1; i <= baris; i++) {
-                    const barisFib = fib.slice(index, index + i);
-                    const spasi = " ".repeat((baris - i) * 2);
-                    hasil += spasi + barisFib.join(" ") + "\n";
-                    index += i;
-                }
-
-                outputDiv.textContent = hasil;
+            while (fib.length < totalAngka) {
+                const next = fib[fib.length - 1] + fib[fib.length - 2];
+                fib.push(next);
             }
-        </script>
-    </body>
+
+            let index = 0;
+            const maxBarisPanjang = baris;
+            for (let i = 1; i <= baris; i++) {
+                const barisFib = fib.slice(index, index + i);
+                const spasi = " ".repeat((baris - i) * 2);
+                hasil += spasi + barisFib.join(" ") + "\n";
+                index += i;
+            }
+
+            outputDiv.textContent = hasil;
+        }
+    </script>
+</body>
+
 </html>
