@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Test No 5</title>
+</head>
+
+<body class="bg-white p-10 text-sm font-sans text-black">
+    <div>
+        <b>Tampilan</b><br><br>
+        <b>Encrypt</b><br>
+
+        <!-- Baris Enkripsi -->
+        <div class="flex items-center gap-2 mb-1">
+            <label class="w-[50px]">String</label>
+            <input type="text" id="encryptInput" class="border border-black px-1 py-[1px] w-[200px]" />
+            <button onclick="enkripsi()" class="bg-[#ddd] border border-black px-2 py-[1px]">encrypt</button>
+        </div>
+
+        <!-- Output Enkripsi -->
+        <div class="ml-[50px] mb-4">
+            hasil : <span id="encryptOutput"></span>
+        </div>
+
+        <!-- Baris Dekripsi -->
+        <div class="flex items-center gap-2">
+            <label class="w-[50px]">String</label>
+            <input type="text" id="decryptInput" class="border border-black px-1 py-[1px] w-[200px]" />
+            <button onclick="dekripsi()" class="bg-[#ddd] border border-black px-2 py-[1px]">decrypt</button>
+        </div>
+
+        <!-- Output Dekripsi -->
+        <div class="ml-[50px] mt-1">
+            hasil : <span id="decryptOutput"></span>
+        </div>
+    </div>
+
+    <script>
+        const vokal = ['a', 'i', 'u', 'e', 'o'];
+        const prime = [2, 3, 5, 7, 11, 13];
+
+        function enkripsi() {
+            const text = document.getElementById('encryptInput').value;
+            let result = '';
+            let primeIndex = 0;
+
+            for (let char of text) {
+                const lowerChar = char.toLowerCase();
+                const isUpper = char !== lowerChar;
+
+                if (vokal.includes(lowerChar)) {
+                    const index = vokal.indexOf(lowerChar);
+                    const newIndex = (index + prime[primeIndex % prime.length]) % 5;
+                    const newChar = vokal[newIndex];
+                    result += isUpper ? newChar.toUpperCase() : newChar;
+                    primeIndex++;
+                } else {
+                    result += char;
+                }
+            }
+
+            document.getElementById('encryptOutput').textContent = result;
+        }
+
+        function dekripsi() {
+            const text = document.getElementById('decryptInput').value;
+            let result = '';
+            let primeIndex = 0;
+
+            for (let char of text) {
+                const lowerChar = char.toLowerCase();
+                const isUpper = char !== lowerChar;
+
+                if (vokal.includes(lowerChar)) {
+                    const index = vokal.indexOf(lowerChar);
+                    const newIndex = (index - prime[primeIndex % prime.length] + 5) % 5;
+                    const newChar = vokal[newIndex];
+                    result += isUpper ? newChar.toUpperCase() : newChar;
+                    primeIndex++;
+                } else {
+                    result += char;
+                }
+            }
+
+            document.getElementById('decryptOutput').textContent = result;
+        }
+    </script>
+</body>
+
+</html>
