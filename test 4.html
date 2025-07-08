@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <title>Document</title>
+    </head>
+    <body class="min-h-screen flex items-center justify-center p-4 font-sans">
+        <div class="p-6 w-xl">
+            <div class="flex items-center mb-4 space-x-2">
+                <label for="counter">Counter</label>
+                <input
+                    type="number"
+                    id="bilangan"
+                    min="1"
+                    class="border border-gray-400 px-2 py-1 text-sm w-24 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                <button
+                    onclick="generate()"
+                    class="bg-gray-200 border border-gray-400 px-3 py-1 rounded-sm text-sm hover:bg-gray-200">Generate</button>
+            </div>
+
+            <div class="mt-6">
+                <pre id="hasil"
+                class="text-sm font-mono whitespace-pre leading-6 text-gray-800 bg-gray-50 p-4 rounded border border-gray-300 min-h-[100px]w-fit max-w-full overflow-auto"></pre>
+            </div>
+        </div>
+        <script>
+            function generate() {
+                const n = parseInt(document.getElementById('bilangan').value);
+                const outputDiv = document.getElementById('hasil');
+
+                const hasil = [];
+                let angka = 1;
+                while (hasil.length < n) {
+                    const Kelipatan3 = angka % 3 === 0;
+                    const contains3 = angka
+                        .toString()
+                        .includes("3");
+
+                    if (Kelipatan3 && contains3) {
+                        hasil.push("SEVEN");
+                    } else if (Kelipatan3 || contains3) {
+                        hasil.push("TRANS");
+                    } else {
+                        hasil.push(angka);
+                    }
+
+                    angka += 2
+                }
+
+                outputDiv.textContent = hasil.join(",");
+            }
+        </script>
+    </body>
+</html>
